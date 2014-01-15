@@ -5,6 +5,15 @@
 #include <QWidget>
 #include <QtCore>
 
+Cell::Cell(int row, int column, bool status, int size) {
+    this->row = row;
+    this->column = column;
+    this->status = status;
+    this->cell_size = size;
+    this->setGeometry(size * row, size * column, size, size);
+}
+
+
 // Determines if a cell is alive given the amount of neighbors it has.
 void Cell::updateCell(int numNeighbors) {
 	if (numNeighbors <= MIN_NEIGHBORS) {
@@ -22,10 +31,11 @@ Cell& Cell::operator=(const Cell &copy_cell) {
 	row = copy_cell.row;
 	column = copy_cell.column;
 	status = copy_cell.status;
+    cell_size = copy_cell.cell_size;
 	return *this;
 }
 
-void paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *) {
+void Cell::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *) {
     QPen pen(Qt::black, 3);
     painter->setPen(pen);
     painter->drawRect(rect());

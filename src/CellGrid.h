@@ -3,20 +3,21 @@
 **/
 #pragma once
 #include "Cell.h"
-#include <vector>
+#include <QtCore>
 
 
 class CellGrid {
 private:
 	int width;
 	int height;
-	std::vector<Cell> cells;
+    QList<Cell> cells;
 	int numCells;
 	int fromRowCol(int, int);
 
 public:
-	CellGrid();
+    CellGrid(int, int, int);
 	void update();
 	int numNeighbors(Cell cell);
 	void printGrid();
+    QList<Cell> getList() { return cells; }
 };

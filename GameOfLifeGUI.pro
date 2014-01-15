@@ -10,21 +10,15 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = GameOfLifeGUI
 TEMPLATE = app
+QMAKE_CXXFLAGS += -std=c++11
 
 
-SOURCES += main.cpp\
-        mainwindow.cpp \
-    CellGrid.cpp \
-    src/Cell.cpp \
-    src/CellGrid.cpp \
-    src/main.cpp \
-    src/mainwindow.cpp
+SOURCES += src/main.cpp\
+        #src/mainwindow.cpp \
+        src/CellGrid.cpp \
+        src/Cell.cpp \
 
-HEADERS  += mainwindow.h \
-    Cell.h \
-    CellGrid.h \
-    src/Cell.h \
-    src/CellGrid.h \
-    src/mainwindow.h
-
-FORMS    += mainwindow.ui
+HEADERS  += src/Cell.h \
+            src/CellGrid.h \
+            #src/mainwindow.h \
+FORMS    #+= mainwindow.ui

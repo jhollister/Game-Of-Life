@@ -9,19 +9,18 @@
 #include <QtWidgets>
 
 class Cell : public QGraphicsWidget {
+
+  // Q_OBJECT
 private:
 	int row;
 	int column;
 	bool status;
+    int cell_size;
 	const int MIN_NEIGHBORS = 1;
 	const int MAX_NEIGHBORS = 4;
 	const int REPRODUCTION = 3;
 public:
-	Cell(int row, int column, bool status) {
-		this->row = row;
-		this->column = column;
-		this->status = status;
-	}
+    Cell(int row, int column, bool status, int size);
 	int getRow() { return row; }
 	int getColumn() { return column; }
 	bool isAlive() { return status; }

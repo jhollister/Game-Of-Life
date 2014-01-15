@@ -3,40 +3,24 @@
 **/
 
 #include "CellGrid.h"
-#include <iostream>
-#include <vector>
-#include <string>
+#include <QtCore>
+#include <QWidget>
 
-// Default setup for testing.
-CellGrid::CellGrid() {
-	std::string cell_setup =
-		"XXXXXX\nXXOOOX\nXOOOXX\nXXXXXX";
-	int row = 0;
-	int col = 0;
-
-	for (char& c : cell_setup) {
-		if (c == 'O') {
-			cells.push_back(Cell(row, col, true));
-			col++;
-		}
-		if (c == 'X') {
-			cells.push_back(Cell(row, col, false));
-			col++;	
-		}
-		if (c == '\n') {
-			row++;
-			col = 0;
-		}
-	}
-	row++;
-	this->width = col;
-	this->height = row;
-	this->numCells = row * col;
+// Initial board of all alive cells
+CellGrid::CellGrid(int width, int height, int cell_size) {
+    this->width = width;
+    this->height = height;
+    this->numCells = width * height;
+    for(int i = 0; i < width; i++) {
+        for (int j = 0; j < height; j++) {
+            cells.append(Cell(i, j, true, cell_size));
+        }
+    }
 }
 
 // Updates the grid all at once by storing results in a copy.
 void CellGrid::update() {
-	std::vector<Cell> new_cells{ cells };
+    QList<Cell> new_cells{ cells };
 	for (int i = 0; i < numCells; i++) {
 		new_cells[i].updateCell(numNeighbors(cells[i]));
 	}
@@ -89,19 +73,4 @@ int CellGrid::numNeighbors(Cell cell) {
 
 int CellGrid::fromRowCol(int row, int col) {
 	return (row * width ) + col;
-}
-
-void CellGrid::printGrid() {
-	for (int i = 0; i < height; i++) {
-		for (int j = 0; j < width; j++) {
-			if (cells[fromRowCol(i, j)].isAlive()) {
-				std::cout << "X";
-			}
-			else {
-				std::cout << "O";
-			}
-		}
-		std::cout << std::endl;
-	}
-	std::cout << std::endl;
 }
