@@ -4,14 +4,14 @@
 #include "Cell.h"
 #include "CellGrid.h"
 
-const int RECT_SIZE = 20;
+const int RECT_SIZE = 15;
 const int NUM_RECTANGLES = 16;
 const int GRID_SIZE = RECT_SIZE*NUM_RECTANGLES;
 
-void addGrid(QGraphicsScene &scene, CellGrid grid) {
-    QList<Cell> cell_list = grid.getList();
-    for(int i = 0; i < cell_list.length(); i++) {
-        scene.addItem(&cell_list[i]);
+void addGrid(QGraphicsScene &scene, CellGrid &grid) {
+    QList<Cell*>* cell_list = grid.getList();
+    for(int i = 0; i < cell_list->length(); i++) {
+        scene.addItem(cell_list->at(i));
     }
 }
 

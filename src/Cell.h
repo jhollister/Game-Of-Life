@@ -10,21 +10,25 @@
 
 class Cell : public QGraphicsWidget {
 
-  // Q_OBJECT
+
 private:
+    Q_OBJECT
+
 	int row;
 	int column;
 	bool status;
     int cell_size;
 	const int MIN_NEIGHBORS = 1;
 	const int MAX_NEIGHBORS = 4;
-	const int REPRODUCTION = 3;
+    const int NEW_CELL = 3;
 public:
     Cell(int row, int column, bool status, int size);
-	int getRow() { return row; }
-	int getColumn() { return column; }
-	bool isAlive() { return status; }
-	void updateCell(int numNeighbors);
-	Cell& operator=(const Cell&);
+    Cell();
+    int getRow() const { return row; }
+    int getColumn() const { return column; }
+    bool isAlive() const { return status; }
+    bool isAlive(int numNeighbors) const;
+    void updateCell(bool status);
+    void copy(const Cell&);
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *);
 };
