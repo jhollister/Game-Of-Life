@@ -3,8 +3,6 @@
 **/
 
 #include "CellGrid.h"
-#include <QtCore>
-#include <QWidget>
 
 // Initial board of all alive cells
 CellGrid::CellGrid(int width, int height, int cell_size) {

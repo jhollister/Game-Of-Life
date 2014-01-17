@@ -3,7 +3,7 @@
 **/
 #pragma once
 #include "Cell.h"
-#include <QtCore>
+#include <QList>
 
 
 class CellGrid {

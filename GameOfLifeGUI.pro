@@ -19,4 +19,4 @@ SOURCES += src/main.cpp\
 
 HEADERS  += src/Cell.h \
             src/CellGrid.h \
-FORMS    #+= mainwindow.ui
+

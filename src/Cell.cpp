@@ -2,15 +2,15 @@
 	Author: James Hollister
 **/
 #include "Cell.h"
-#include <QWidget>
-#include <QtCore>
+#include <QtWidgets>
 
 Cell::Cell(int row, int column, bool status, int size) {
     this->row = row;
     this->column = column;
     this->status = status;
     this->cell_size = size;
-    this->setGeometry(size * row, size * column, size, size);
+    this->cell_color = Qt::gray;
+    setAcceptedMouseButtons(Qt::LeftButton);
 }
 
 Cell::Cell() {
@@ -18,7 +18,6 @@ Cell::Cell() {
     this->column = 0;
     this->status = false;
     this->cell_size = 0;
-    this->setGeometry(0, 0, 0,  0);
 }
 
 // Determines if a cell is alive given the amount of neighbors it has.
@@ -50,7 +49,18 @@ void Cell::copy(const Cell &copy_cell) {
 void Cell::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *) {
     QPen pen(Qt::black, 3);
     painter->setPen(pen);
-    painter->drawRect(rect());
-    painter->fillRect(rect(), Qt::gray);
+    painter->drawRect(boundingRect());
+    painter->fillRect(boundingRect(), cell_color);
 }
 
+
+QRectF Cell::boundingRect() const {
+    return QRectF(cell_size * row, cell_size * column, cell_size, cell_size);
+}
+
+void Cell::mousePressEvent(QGraphicsSceneMouseEvent *event) {
+    Q_UNUSED(event);
+    cell_color = Qt::darkGray;
+    status = !status;
+    update();
+}
