@@ -2,7 +2,7 @@
 	Author: James Hollister
 **/
 
-#include "CellGrid.h"
+#include "cellGrid.h"
 
 // Initial board of all alive cells
 CellGrid::CellGrid(int width, int height, int cell_size) {
@@ -11,7 +11,7 @@ CellGrid::CellGrid(int width, int height, int cell_size) {
     this->numCells = width * height;
     for(int i = 0; i < width; i++) {
         for (int j = 0; j < height; j++) {
-            Cell* cell = new Cell(i, j, true, cell_size);
+            Cell* cell = new Cell(i, j, false, cell_size);
             cells << cell;
         }
     }

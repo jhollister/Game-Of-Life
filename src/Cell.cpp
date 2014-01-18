@@ -1,7 +1,7 @@
 /**
 	Author: James Hollister
 **/
-#include "Cell.h"
+#include "cell.h"
 #include <QtWidgets>
 
 Cell::Cell(int row, int column, bool status, int size) {
@@ -9,16 +9,10 @@ Cell::Cell(int row, int column, bool status, int size) {
     this->column = column;
     this->status = status;
     this->cell_size = size;
-    this->cell_color = Qt::gray;
+    this->cell_color = Qt::lightGray;
     setAcceptedMouseButtons(Qt::LeftButton);
 }
 
-Cell::Cell() {
-    this->row = 0;
-    this->column = 0;
-    this->status = false;
-    this->cell_size = 0;
-}
 
 // Determines if a cell is alive given the amount of neighbors it has.
 bool Cell::isAlive(int numNeighbors) const {
@@ -60,7 +54,13 @@ QRectF Cell::boundingRect() const {
 
 void Cell::mousePressEvent(QGraphicsSceneMouseEvent *event) {
     Q_UNUSED(event);
-    cell_color = Qt::darkGray;
-    status = !status;
+    if(status) {
+        cell_color = Qt::lightGray;
+        status = false;
+    }
+    else {
+        cell_color = Qt::darkGray;
+        status = true;
+    }
     update();
 }

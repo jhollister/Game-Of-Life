@@ -6,6 +6,7 @@
 #pragma once
 
 #include <QGraphicsItem>
+#include <QtWidgets>
 
 class Cell : public QGraphicsObject {
 
@@ -26,7 +27,6 @@ protected:
     void mousePressEvent(QGraphicsSceneMouseEvent *event);
 public:
     Cell(int row, int column, bool status, int size);
-    Cell();
     virtual ~Cell() { }
     int getRow() const { return row; }
     int getColumn() const { return column; }

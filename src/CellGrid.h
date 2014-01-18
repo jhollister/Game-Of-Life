@@ -2,7 +2,7 @@
 	Author: James Hollister
 **/
 #pragma once
-#include "Cell.h"
+#include "cell.h"
 #include <QList>
 
 
