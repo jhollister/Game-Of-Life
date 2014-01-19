@@ -10,7 +10,7 @@ Cell::Cell(int row, int column, bool status, int size) {
     this->status = status;
     this->cell_size = size;
     this->cell_color = Qt::lightGray;
-    setAcceptedMouseButtons(Qt::LeftButton);
+    //setAcceptedMouseButtons(Qt::LeftButton);
 }
 
 
@@ -22,15 +22,25 @@ bool Cell::isAlive(int numNeighbors) const {
 	if (numNeighbors >= MAX_NEIGHBORS) {
         return false;
 	}
-    if (!this->status && numNeighbors == NEW_CELL) {
-        return true;
+    if (status == false) {
+        if (numNeighbors == NEW_CELL) {
+            return true;
+        }
+        else return false;
 	}
-    return false;
+    return true;
 }
 
 void Cell::updateCell(bool status) {
     this->status = status;
     // to-do: graphic stuff here(call paint?)
+    if (status) {
+        cell_color = Qt::darkGray;
+    }
+    else {
+        cell_color = Qt::lightGray;
+    }
+    update();
 }
 
 void Cell::copy(const Cell &copy_cell) {
@@ -55,12 +65,14 @@ QRectF Cell::boundingRect() const {
 void Cell::mousePressEvent(QGraphicsSceneMouseEvent *event) {
     Q_UNUSED(event);
     if(status) {
-        cell_color = Qt::lightGray;
+        //cell_color = Qt::lightGray;
         status = false;
+        updateCell(status);
     }
     else {
-        cell_color = Qt::darkGray;
+        //cell_color = Qt::darkGray;
         status = true;
+        updateCell(status);
     }
     update();
 }

@@ -65,7 +65,7 @@
      <string>Size</string>
     </property>
     <addaction name="actionSmall"/>
-    <addaction name="actionNormal"/>
+    <addaction name="actionMedium"/>
     <addaction name="actionLarge"/>
    </widget>
    <addaction name="menuGame"/>
@@ -108,17 +108,20 @@
     <string>Small</string>
    </property>
   </action>
-  <action name="actionNormal">
+  <action name="actionMedium">
    <property name="checkable">
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>Normal</string>
+    <string>Medium</string>
    </property>
   </action>
   <action name="actionLarge">
    <property name="checkable">
     <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>false</bool>
    </property>
    <property name="text">
     <string>Large</string>

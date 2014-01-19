@@ -16,12 +16,14 @@ QMAKE_CXXFLAGS += -std=c++11
 SOURCES += src/main.cpp\
     src/cell.cpp \
     src/cellgrid.cpp \
-    src/mainwindow.cpp
+    src/mainwindow.cpp \
+    src/gamethread.cpp
 
 HEADERS  += \
     src/cell.h \
     src/cellgrid.h \
-    src/mainwindow.h
+    src/mainwindow.h \
+    src/gamethread.h
 
 FORMS += \
     mainwindow.ui

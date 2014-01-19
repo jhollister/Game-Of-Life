@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QtWidgets>
 #include "cellgrid.h"
+#include "gamethread.h"
 
 namespace Ui {
 class MainWindow;
@@ -22,6 +23,10 @@ private slots:
 
     void on_actionStart_triggered();
 
+    void on_actionSmall_triggered();
+
+    void on_actionLarge_triggered();
+
 private:
     void addGrid(QGraphicsScene &scene, CellGrid &grid);
     void setupGrid(int, int);
@@ -30,8 +35,10 @@ private:
     QGraphicsScene* scene;
     QGraphicsView* view;
     CellGrid* grid;
+    GameThread* thread;
     const int RECT_SIZE = 15; // rectangle pixel size
     int rectInRow = 16;  // Number of rectangles in a row
+    bool isRunning;
 };
 
 #endif // MAINWINDOW_H
